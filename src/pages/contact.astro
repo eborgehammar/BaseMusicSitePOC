@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ButtonLink.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout title="Contact" description="Get in touch with Example Piano Studio.">
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <h1 class="text-4xl md:text-5xl">Contact</h1>
+    <p class="mt-6 text-lg text-muted">
+      Placeholder: a short invitation to reach out about lessons, coaching, or performances.
+    </p>
+
+    <!-- TODO: replace with Web3Forms form (plan §6). Keep the mailto fallback. -->
+    <div class="mt-10">
+      <ButtonLink href={`mailto:${site.email}`}>Email the studio</ButtonLink>
+    </div>
+
+    <div class="mt-16 border-t border-line pt-10">
+      <h2 class="text-2xl">Follow along</h2>
+      <div class="mt-6">
+        <SocialLinks />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

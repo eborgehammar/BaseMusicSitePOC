@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ButtonLink.astro';
+---
+
+<BaseLayout title="Page not found" description="This page could not be found.">
+  <section class="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6">
+    <p class="font-serif text-6xl text-accent">404</p>
+    <h1 class="mt-4 text-4xl">Page not found</h1>
+    <p class="mt-6 text-muted">The page you are looking for has moved or does not exist.</p>
+    <div class="mt-10 flex justify-center">
+      <ButtonLink href="/">Back to home</ButtonLink>
+    </div>
+  </section>
+</BaseLayout>

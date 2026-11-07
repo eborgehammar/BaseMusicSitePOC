@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaceholderImage from '../components/PlaceholderImage.astro';
+---
+
+<BaseLayout title="About" description="About the teacher and the studio.">
+  <section class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:items-start">
+    <PlaceholderImage label="Portrait image" width={800} height={1000} />
+    <div>
+      <h1 class="text-4xl md:text-5xl">About the studio</h1>
+      <div class="mt-6 max-w-prose space-y-5 text-muted">
+        <p>Placeholder: first paragraph of the teacher's biography.</p>
+        <p>Placeholder: second paragraph about teaching approach and background.</p>
+        <p>Placeholder: third paragraph about studio values and the students it serves.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

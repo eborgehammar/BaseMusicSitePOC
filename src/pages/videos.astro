@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import { videos } from '../content/videos';
+---
+
+<BaseLayout title="Videos" description="Performance videos from students and studio recitals.">
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h1 class="text-4xl md:text-5xl">Performance Videos</h1>
+    <p class="mt-6 max-w-prose text-lg text-muted">
+      Placeholder: a short introduction to the performance videos below.
+    </p>
+    <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {videos.map((video) => <VideoEmbed title={video.title} embedUrl={video.embedUrl} />)}
+    </div>
+  </section>
+</BaseLayout>

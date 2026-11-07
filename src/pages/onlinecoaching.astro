@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ButtonLink.astro';
+import PricingCard from '../components/PricingCard.astro';
+import { coachingIntakeUrl, coachingSteps, coachingTiers } from '../content/coaching';
+---
+
+<BaseLayout title="Online Coaching" description="Online piano coaching with weekly practice plans and feedback.">
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h1 class="text-4xl md:text-5xl">Online Coaching</h1>
+    <p class="mt-6 max-w-prose text-lg text-muted">
+      Placeholder: a description of the online coaching program and who it suits.
+    </p>
+  </section>
+
+  <section class="border-t border-line bg-surface">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <h2 class="text-3xl">How it works</h2>
+      <ol class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          coachingSteps.map((step, index) => (
+            <li class="rounded-2xl border border-line bg-ivory p-6">
+              <span class="font-serif text-3xl text-accent">{index + 1}</span>
+              <p class="mt-3 text-sm text-muted">{step}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h2 class="text-3xl">Pricing</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        coachingTiers.map((tier) => (
+          <PricingCard
+            name={tier.name}
+            price={tier.price}
+            period={tier.period}
+            features={tier.features}
+            highlight={tier.highlight}
+          />
+        ))
+      }
+    </div>
+    <div class="mt-12">
+      <ButtonLink href={coachingIntakeUrl} external>Open the intake form</ButtonLink>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,38 @@
+---
+// Placeholder for an image that hasn't been supplied yet.
+// Swap for <Image> from astro:assets once real files exist.
+interface Props {
+  label: string;
+  width?: number;
+  height?: number;
+  class?: string;
+}
+
+const { label, width = 1600, height = 900, class: className = '' } = Astro.props;
+const text = `${label} ${width}×${height}`;
+const gradientId = `ph-${width}x${height}-${label.replace(/\W+/g, '-').toLowerCase()}`;
+---
+
+<svg
+  role="img"
+  aria-label={text}
+  viewBox={`0 0 ${width} ${height}`}
+  class:list={['block h-auto w-full rounded-2xl', className]}
+>
+  <defs>
+    <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e9e1d3" />
+      <stop offset="1" stop-color="#cdbfa9" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill={`url(#${gradientId})`} />
+  <text
+    x="50%"
+    y="50%"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="sans-serif"
+    font-size={Math.round(height / 18)}
+    fill="#5f5a53">{text}</text
+  >
+</svg>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import { streamSchedule } from '../content/schedule';
+import { videos } from '../content/videos';
+
+const highlights = videos.slice(0, 2);
+---
+
+<BaseLayout title="Live" description="Live piano sessions and the weekly schedule.">
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h1 class="text-4xl md:text-5xl">Live Sessions</h1>
+    <p class="mt-6 max-w-prose text-lg text-muted">
+      Placeholder: a description of the live sessions and what viewers can expect.
+    </p>
+  </section>
+
+  <section class="border-t border-line bg-surface">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <h2 class="text-3xl">Weekly schedule</h2>
+      <table class="mt-6 w-full max-w-3xl text-left text-sm">
+        <thead class="border-b border-line text-muted">
+          <tr>
+            <th scope="col" class="py-3 font-medium">Day</th>
+            <th scope="col" class="py-3 font-medium">Time</th>
+            <th scope="col" class="py-3 font-medium">Topic</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            streamSchedule.map((item) => (
+              <tr class="border-b border-line">
+                <td class="py-3">{item.day}</td>
+                <td class="py-3">{item.time}</td>
+                <td class="py-3">{item.topic}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h2 class="text-3xl">Recent highlights</h2>
+    <div class="mt-10 grid gap-8 md:grid-cols-2">
+      {highlights.map((video) => <VideoEmbed title={video.title} embedUrl={video.embedUrl} />)}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,76 @@
+---
+import { site } from '../config/site';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 border-b border-line bg-ivory/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+    <a href="/" class="flex items-center gap-3 font-serif text-xl">
+      <svg aria-hidden="true" class="size-8" viewBox="0 0 32 32">
+        <rect width="32" height="32" rx="6" fill="#1d1b19" />
+        <rect x="6" y="6" width="20" height="20" rx="2" fill="#faf7f2" />
+        <rect x="12" y="6" width="2" height="20" fill="#1d1b19" />
+        <rect x="18" y="6" width="2" height="20" fill="#1d1b19" />
+      </svg>
+      <span>{site.name}</span>
+    </a>
+
+    <button
+      type="button"
+      class="rounded-full border border-line px-4 py-2 text-sm font-medium lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      data-menu-toggle
+    >
+      Menu
+    </button>
+
+    <nav aria-label="Primary" class="hidden lg:block">
+      <ul class="flex items-center gap-5 text-sm">
+        {
+          site.nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={currentPath === item.href ? 'page' : undefined}
+                class="text-muted transition-colors hover:text-ink aria-[current=page]:text-ink aria-[current=page]:font-medium"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <nav id="mobile-nav" aria-label="Mobile" class="hidden border-t border-line lg:hidden">
+    <ul class="flex flex-col px-4 py-2">
+      {
+        site.nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={currentPath === item.href ? 'page' : undefined}
+              class="block py-3 text-base text-muted hover:text-ink aria-[current=page]:font-medium aria-[current=page]:text-ink"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('mobile-nav');
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    menu?.classList.toggle('hidden', !open);
+  });
+</script>

@@ -1,0 +1,20 @@
+---
+import { site } from '../config/site';
+---
+
+<ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+  {
+    site.social.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent underline-offset-4 hover:underline"
+        >
+          {link.label}
+        </a>
+      </li>
+    ))
+  }
+</ul>

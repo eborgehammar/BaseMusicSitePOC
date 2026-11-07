@@ -1,0 +1,54 @@
+---
+import PlaceholderImage from './PlaceholderImage.astro';
+
+// Click-to-load wrapper. Nothing loads until the viewer clicks play.
+// With an empty embedUrl it renders a placeholder and no player.
+interface Props {
+  title: string;
+  embedUrl?: string;
+}
+
+const { title, embedUrl = '' } = Astro.props;
+---
+
+<figure data-video>
+  <div class="relative overflow-hidden rounded-2xl" data-video-frame data-embed-url={embedUrl}>
+    <PlaceholderImage label={title} width={1280} height={720} />
+    {
+      embedUrl && (
+        <button
+          type="button"
+          data-play
+          aria-label={`Play ${title}`}
+          class="absolute inset-0 flex items-center justify-center bg-ink/20 transition-colors hover:bg-ink/30"
+        >
+          <span class="flex size-16 items-center justify-center rounded-full bg-ivory text-ink shadow">
+            <svg aria-hidden="true" class="ml-1 size-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </button>
+      )
+    }
+  </div>
+  <figcaption class="mt-3 text-sm font-medium">{title}</figcaption>
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-video-frame]').forEach((frame) => {
+    const url = frame.dataset.embedUrl;
+    const play = frame.querySelector<HTMLButtonElement>('[data-play]');
+
+    play?.addEventListener('click', () => {
+      if (!url) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = url;
+      iframe.title = play.getAttribute('aria-label') ?? 'Video';
+      iframe.loading = 'lazy';
+      iframe.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.className = 'aspect-video w-full rounded-2xl';
+      frame.replaceChildren(iframe);
+    });
+  });
+</script>

@@ -1,0 +1,44 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/fraunces";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces Variable", Georgia, serif;
+
+  --color-ivory: #faf7f2;
+  --color-surface: #f2ede4;
+  --color-ink: #1d1b19;
+  --color-muted: #5f5a53;
+  --color-line: #e2dbcf;
+  --color-accent: #7a2e3b;
+  --color-accent-hover: #5e222d;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    background-color: var(--color-ivory);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}

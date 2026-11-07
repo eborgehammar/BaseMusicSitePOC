@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ButtonLink.astro';
+import PlaceholderImage from '../components/PlaceholderImage.astro';
+import { site } from '../config/site';
+
+const services = [
+  {
+    title: 'Private Lessons',
+    body: 'One-on-one lessons shaped around your goals, at any level.',
+    href: '/lessons',
+  },
+  {
+    title: 'Online Coaching',
+    body: 'Structured practice plans and feedback from wherever you are.',
+    href: '/onlinecoaching',
+  },
+  {
+    title: 'Live Sessions',
+    body: 'Join live piano sessions and see the studio at work.',
+    href: '/live',
+  },
+  {
+    title: 'Performance Videos',
+    body: 'Recordings from students and studio recitals.',
+    href: '/videos',
+  },
+];
+---
+
+<BaseLayout>
+  <section class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-24">
+    <div>
+      <p class="text-sm font-medium tracking-widest text-accent uppercase">Piano studio · Your City</p>
+      <h1 class="mt-4 text-4xl sm:text-5xl md:text-6xl">Learn piano at your own pace</h1>
+      <p class="mt-6 max-w-prose text-lg text-muted">{site.description}</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <ButtonLink href="/lessons">Explore lessons</ButtonLink>
+        <ButtonLink href="/contact" variant="secondary">Get in touch</ButtonLink>
+      </div>
+    </div>
+    <PlaceholderImage label="Hero image" width={1600} height={900} />
+  </section>
+
+  <section class="border-t border-line">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <h2 class="text-3xl md:text-4xl">What we offer</h2>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          services.map((service) => (
+            <li>
+              <a
+                href={service.href}
+                class="block h-full rounded-2xl border border-line bg-ivory p-6 transition-colors hover:border-accent"
+              >
+                <h3 class="text-xl">{service.title}</h3>
+                <p class="mt-3 text-sm text-muted">{service.body}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-surface">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <h2 class="text-3xl md:text-4xl">Sheet Music and Resources — Coming Soon</h2>
+      <p class="mt-4 max-w-prose text-muted">Placeholder: free sheet music and practice resources will be available here.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h2 class="text-3xl md:text-4xl">Based in Your City</h2>
+    <p class="mt-4 max-w-prose text-muted">
+      Placeholder: a short paragraph about the studio's location and how lessons are arranged.
+    </p>
+  </section>
+</BaseLayout>
